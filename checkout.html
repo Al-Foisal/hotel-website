@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Jost:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/vendors.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <title>Otithee Hotel</title>
+</head>
+
+<body>
+  <div class="menuFullScreen js-menuFullScreen">
+    <div class="menuFullScreen__topMobile js-menuFullScreen-topMobile">
+      <div class="d-flex items-center text-white js-menuFullScreen-toggle">
+        <i class="icon-menu text-9"></i>
+        <div class="text-15 uppercase ml-30 sm:d-none">Menu</div>
+      </div>
+
+      <div class="">
+        <img src="img/general/logo-white.svg" alt="logo">
+      </div>
+
+      <button class="button text-white mr-30 lg:mr-0">
+        EN <i class="icon-chevron-down ml-15"></i>
+      </button>
+    </div>
+
+    <div class="menuFullScreen__mobile__bg js-menuFullScreen-mobile-bg"></div>
+
+    <div class="menuFullScreen__left">
+      <div class="menuFullScreen__bg js-menuFullScreen-bg">
+        <img src="img/menu/bg.png" alt="image">
+      </div>
+
+      <button class="menuFullScreen__close js-menuFullScreen-toggle js-menuFullScreen-close-btn">
+        <span class="icon">
+          <span></span>
+          <span></span>
+        </span>
+        CLOSE
+      </button>
+
+      <div class="menuFullScreen-links js-menuFullScreen-links">
+
+        <div class="menuFullScreen-links__item js-menuFullScreen-has-children">
+          <a href="index.html">
+            HOME
+            <i class="icon-arrow-left"></i>
+            <i class="icon-chevron-left"></i>
+          </a>
+        </div>
+		
+		<div class="menuFullScreen-links__item js-menuFullScreen-has-children">
+          <a href="about.html">
+            ABOUT
+			<i class="icon-arrow-left"></i>
+            <i class="icon-chevron-left"></i>
+          </a>
+        </div>
+
+        <div class="menuFullScreen-links__item js-menuFullScreen-has-children">
+          <a href="#">
+            SERVICES
+            <i class="icon-arrow-right"></i>
+            <i class="icon-chevron-right"></i>
+          </a>
+
+
+          <div class="menuFullScreen-links-subnav js-menuFullScreen-subnav">
+
+            <div class="menuFullScreen-links-subnav__item">
+              <a href="booking.html">Booking</a>
+            </div>
+
+            <div class="menuFullScreen-links-subnav__item">
+              <a href="cart.html">Cart</a>
+            </div>
+
+            <div class="menuFullScreen-links-subnav__item">
+              <a href="checkout.html">Checkout</a>
+            </div>
+
+          </div>
+
+        </div>
+		
+		<div class="menuFullScreen-links__item js-menuFullScreen-has-children">
+          <a href="rooms-list-5.html">
+            ROOMS
+            <i class="icon-arrow-left"></i>
+            <i class="icon-chevron-left"></i>
+          </a>
+        </div>
+		
+		<div class="menuFullScreen-links__item">
+          <a href="contact.html">
+            CONTACT
+			<i class="icon-arrow-left"></i>
+            <i class="icon-chevron-left"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="menuFullScreen__right js-menuFullScreen-right">
+      <div class="text-center">
+        <div class="mb-100">
+          <img src="img/general/logo-black.svg" alt="image">
+        </div>
+
+        <div class="text-sec lh-11 fw-500 text-40">
+          Hotel & Spa Swiss<br>
+          Resort
+        </div>
+
+        <div class="mt-40">
+          <div class="text-30 text-sec fw-500">
+            Location
+          </div>
+          <div class="mt-10">
+            PO Box 16122 Collins Street West<br>
+            Victoria 8007 Australia
+          </div>
+        </div>
+
+        <div class="mt-40">
+          <div class="text-30 text-sec fw-500">
+            Phone Support
+          </div>
+          <div class="mt-10">
+            <div>
+              <a href="#">+ 01 345 647 745</a>
+            </div>
+            <div>
+              <a href="#">info@swiss-resort.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-40">
+          <div class="text-30 text-sec fw-500">
+            Connect With Us
+          </div>
+          <div class="mt-10">
+            <a href="#">+ 01 345 647 745</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menuFullScreen__bottomMobile js-menuFullScreen-buttomMobile">
+      <button class="button rounded-200 w-1/1 py-20 -light-1 bg-accent-2">
+        BOOK YOUR STAY
+      </button>
+
+      <a href="#" class="d-flex items-center mt-40">
+        <i class="icon-phone mr-10"></i>
+        <span>+41-96567-7854</span>
+      </a>
+
+      <a href="#" class="d-flex mt-20">
+        <i class="icon-map mr-10"></i>
+        <span>
+          PO Box 16122 Collins Street West,
+          Australia
+        </span>
+      </a>
+
+      <a href="#" class="d-flex items-center mt-20">
+        <i class="icon-mail mr-10"></i>
+        <span>info@swiss-resort.com</span>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- cursor start -->
+  <div class="cursor js-cursor">
+    <div class="cursor__wrapper">
+      <div class="cursor__follower js-follower"></div>
+      <div class="cursor__label js-label"></div>
+      <div class="cursor__icon js-icon"></div>
+    </div>
+  </div>
+  <!-- cursor end -->
+
+  <main>
+
+
+    <header class="header -h-110 -mx-60 -blur -border-bottom-1 js-header" data-add-bg="bg-accent-1" data-x="header" data-x-toggle="-is-menu-opened">
+      <div class="header__container h-full items-center">
+        <div class="header__left d-flex items-center">
+          <button class="d-flex items-center cursor-pointer js-menuFullScreen-toggle">
+            <i class="icon-menu text-9 text-white"></i>
+            <div class="text-15 uppercase text-white ml-30 sm:d-none">Menu</div>
+          </button>
+
+          <div class="d-flex items-center ml-90 xl:d-none">
+            <i class="icon-phone text-20 text-white mr-30"></i>
+            <div class="text-15 uppercase text-white">+41-96567-7854</div>
+          </div>
+        </div>
+
+        <div class="header__center">
+          <div class="header__logo">
+            <img src="img/general/logo-header-1.svg" alt="logo">
+          </div>
+        </div>
+
+        <div class="header__right d-flex items-center h-full">
+          <button class="button text-white mr-30 xl:mr-0">
+            EN <i class="icon-chevron-down ml-15"></i>
+          </button>
+
+          <div class="line -vertical bg-white-10 h-full ml-90 mr-90 xl:d-none"></div>
+
+          <button class="button text-white mr-30 xl:d-none">BOOK YOUR STAY</button>
+        </div>
+      </div>
+    </header>
+
+
+    <section data-anim-wrap class="pageHero -type-1 -items-center">
+      <div data-anim-child="img-right cover-white delay-1" class="pageHero__bg">
+        <img src="img/pageHero/1.png" alt="image">
+      </div>
+
+      <div class="container">
+        <div class="row justify-center">
+          <div class="col-auto">
+            <div data-split='lines' data-anim-child="split-lines delay-3" class="pageHero__content text-center">
+              <h1 class="pageHero__title text-white">Checkout</h1>
+              <p class="pageHero__text text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout-pt-lg layout-pb-lg">
+      <div class="container">
+        <div class="row y-gap-40 justify-between">
+          <div class="col-xl-7 col-lg-7">
+            <h2 class="text-30 mb-50">Billing details</h2>
+
+            <div class="contactForm row y-gap-30">
+              <div class="col-md-6">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">First Name</label>
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">Last Name</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">Company name (optional)</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">Country / Region *</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">House number and street name</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">Apartment, suite, unit, etc. (optional)</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">State *</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">ZIP *</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">Phone *</label>
+                </div>
+
+              </div>
+
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <input type="text" required class="">
+                  <label class="lh-1 text-16 text-light-1">Email Address *</label>
+                </div>
+
+              </div>
+            </div>
+
+
+            <h2 class="text-30 mb-50 pt-100 sm:pt-50">Additional information</h2>
+
+            <div class="contactForm row y-gap-30">
+              <div class="col-12">
+
+                <div class="form-input ">
+                  <textarea required class="border-1" rows="10"></textarea>
+                  <label class="lh-1 ">Order notes (optional)</label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-5">
+            <div class="sidebar">
+              <div class="px-40 py-40 bg-light-1">
+                <h3 class="text-30">Your order</h3>
+
+                <div class="border-table-1 y-gap-40 pt-30">
+                  <div class="d-flex justify-between">
+                    <div class="fw-500">PRODUCT</div>
+                    <div class="fw-500">SUBTOTAL</div>
+                  </div>
+
+                  <div class="d-flex justify-between">
+                    <div class="">
+                      Luxury Villa Suite × 1
+
+                      <div class="mt-25">
+                        <div><span class="fw-500">Date:</span> 2023-11-08 - 2023-11-09</div>
+                        <div><span class="fw-500">Details:</span> Rooms: 1, Adults: 1,</div>
+                      </div>
+                    </div>
+
+                    <div class="">$4.321.89</div>
+                  </div>
+
+                  <div class="d-flex justify-between">
+                    <div class="fw-500">Subtotal</div>
+                    <div class="fw-500">$12,345.65</div>
+                  </div>
+
+                  <div class="d-flex justify-between">
+                    <div class="fw-500">Total</div>
+                    <div class="fw-500">$122.00</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="px-40 py-40 bg-light-1 mt-30">
+                <h3 class="text-30">Payment</h3>
+
+                <div class="y-gap-30 pt-30">
+                  <div>
+
+                    <div class="form-radio d-flex items-center ">
+                      <div class="radio">
+                        <input type="radio" name="name">
+                        <div class="radio__mark">
+                          <div class="radio__icon"></div>
+                        </div>
+                      </div>
+                      <div class="fw-500 lh-1 ml-10">Direct bank transfer</div>
+                    </div>
+
+                    <div class="mt-20">
+                      Make your payment directly into our bank account. Please use your Order ID as the payment reference.Your order will not be shipped until the funds have cleared in our account.
+                    </div>
+                  </div>
+
+
+                  <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                      <input type="radio" name="name">
+                      <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                      </div>
+                    </div>
+                    <div class="fw-500 lh-1 ml-10">Check payments</div>
+                  </div>
+
+
+                  <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                      <input type="radio" name="name">
+                      <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                      </div>
+                    </div>
+                    <div class="fw-500 lh-1 ml-10">Cash on delivery</div>
+                  </div>
+
+
+                  <div class="form-radio d-flex items-center ">
+                    <div class="radio">
+                      <input type="radio" name="name">
+                      <div class="radio__mark">
+                        <div class="radio__icon"></div>
+                      </div>
+                    </div>
+                    <div class="fw-500 lh-1 ml-10">PayPal</div>
+                  </div>
+
+                </div>
+              </div>
+
+              <button class="button -md bg-accent-1 -accent-2 text-white w-1/1 mt-30">PLACE ORDER</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer -type-1 bg-accent-1 text-white">
+      <div class="footer__main">
+        <div class="container">
+          <div class="footer__grid">
+            <div class="">
+              <h4 class="text-30 fw-500 text-white">About Us</h4>
+
+              <div class="text-white-60 text-15 lh-17 mt-60 md:mt-20">
+                Duis vitae nulla at nisl finibus pharetra
+                Nunc porttitor sapien quis euismod.
+              </div>
+            </div>
+
+            <div class="">
+              <h4 class="text-30 fw-500 text-white">Contact</h4>
+
+              <div class="d-flex flex-column mt-60 md:mt-20">
+                <div class="">
+                  <a class="d-block text-15 text-white-60 lh-17" href="#">
+                    PO Box 16122 Collins StreetWest Victoria 8007 Australia
+                  </a>
+                </div>
+                <div class="mt-25">
+                  <a class="d-block text-15 text-white-60" href="#">
+                    info@swiss-resort.com
+                  </a>
+                </div>
+                <div class="mt-10">
+                  <a class="d-block text-15 text-white-60" href="#">
+                    +61 3 8376 6284
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="">
+              <h4 class="text-30 fw-500 text-white">Links</h4>
+
+              <div class="row x-gap-50 y-gap-15">
+                <div class="col-sm-6">
+                  <div class="y-gap-15 text-15 text-white-60 mt-60 md:mt-20">
+
+                    <a class="d-block" href="index.html">
+                      Home
+                    </a>
+					
+                    <a class="d-block" href="about.html">
+                      About Hotel
+                    </a>
+
+                    <a class="d-block" href="rooms-list-5.html">
+                      Our Rooms
+                    </a>
+
+                    <a class="d-block" href="booking.html">
+                      Booking
+                    </a>
+
+                    <a class="d-block" href="contact.html">
+                      Contact
+                    </a>
+
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="y-gap-15 text-15 text-white-60 mt-60 md:mt-20">
+
+                    <a class="d-block" href="#">
+                      Privacy Policy
+                    </a>
+
+                    <a class="d-block" href="#">
+                      Terms &amp; Conditions
+                    </a>
+
+                    <a class="d-block" href="#">
+                      Get Directions
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="">
+              <h4 class="text-30 fw-500 text-white">Newsletter Sign Up</h4>
+
+              <p class="text-15 text-white-60 mt-60 md:mt-20">Sign up for our news, deals and special offers.</p>
+
+              <div class="footer__newsletter mt-30">
+                <input type="Email" placeholder="Your email address">
+                <button><i class="icon-arrow-right text-white text-20"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="container">
+          <div class="row y-gap-30 justify-between md:justify-center items-center">
+            <div class="col-md-auto">
+              <div class="text-15 text-center text-white-60">Copyright © 2025 by OSSL</div>
+            </div>
+
+            <div class="col-md-auto">
+              <div class="footer__bottom_center">
+                <div class="d-flex justify-center">
+                  <img src="img/general/logo-white.svg" alt="logo">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-auto">
+              <div class="row x-gap-25 y-gap-10 items-center justify-center">
+
+                <div class="col-auto">
+                  <a href="#" class="d-block text-white-60">
+                    <i class="icon-facebook text-11"></i>
+                  </a>
+                </div>
+
+                <div class="col-auto">
+                  <a href="#" class="d-block text-white-60">
+                    <i class="icon-twitter text-11"></i>
+                  </a>
+                </div>
+
+                <div class="col-auto">
+                  <a href="#" class="d-block text-white-60">
+                    <i class="icon-instagram text-11"></i>
+                  </a>
+                </div>
+
+                <div class="col-auto">
+                  <a href="#" class="d-block text-white-60">
+                    <i class="icon-linkedin text-11"></i>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
+  <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script>
+
+  <script src="js/vendors.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
