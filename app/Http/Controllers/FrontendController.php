@@ -23,4 +23,16 @@ class FrontendController extends Controller
         // dd($data['room_or_apartment']);
         return view('index', $data);
     }
+    public function about()
+    {
+        $data = [];
+        $about = Http::get($this->api . '/ws-about');
+        $facilities = Http::get($this->api . '/hotel-facilities');
+        $testimonial = Http::get($this->api . '/ws-testimonial');
+
+        $data['about'] = $about->ok() ? json_decode($about->body()) : [];
+        $data['facilities'] = $facilities->ok() ? json_decode($facilities->body()) : [];
+        $data['testimonial'] = $testimonial->ok() ? json_decode($testimonial->body()) : [];
+        return view('about', $data);
+    }
 }

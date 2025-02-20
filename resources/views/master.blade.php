@@ -51,7 +51,7 @@
       <div class="menuFullScreen-links js-menuFullScreen-links">
 
         <div class="menuFullScreen-links__item">
-          <a href="#">
+          <a href="{{route('home')}}">
             HOME
             <!-- <i class="icon-arrow-right"></i>
             <i class="icon-chevron-right"></i> -->
@@ -70,8 +70,8 @@
         </div>
 
         <div class="menuFullScreen-links__item">
-          <a href="#">
-            ROOMS
+          <a href="{{route('about')}}">
+            About us
           </a>
 
 
