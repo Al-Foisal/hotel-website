@@ -9,4 +9,5 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/room-or-apartments', 'roomOrApartment')->name('roomOrApartment');
     Route::get('/room-or-apartments-details/{id}', 'roomOrApartmentDetails')->name('roomOrApartmentDetails');
     Route::get('/contact-us', 'contact')->name('contact');
+    Route::post('/save-message', 'saveMessage')->name('saveMessage');
 });

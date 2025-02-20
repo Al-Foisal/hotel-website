@@ -78,8 +78,8 @@
         </div>
 
         <div class="menuFullScreen-links__item">
-          <a href="#">
-            BOOKING
+          <a href="{{route('roomOrApartment')}}">
+            Rooms or Apartments
           </a>
 
 
@@ -104,7 +104,7 @@
 
 
         <div class="menuFullScreen-links__item">
-          <a href="contact.html">
+          <a href="{{route('contact')}}">
             CONTACT
           </a>
         </div>
