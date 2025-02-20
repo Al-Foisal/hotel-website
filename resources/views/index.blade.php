@@ -1,5 +1,5 @@
 @extends('master')
-
+@section('title','Be charming person enjoying your mindset with our luxury')
 @section('content')
 <section data-anim-wrap class="hero -type-6">
     <div data-anim-child="img-right cover-light-1 delay-2" class="hero__bg rounded-16">
@@ -18,7 +18,7 @@
                         {{$setup->slogan}}
                     </h1>
 
-                    <div data-anim-child="slide-up delay-6" class="d-flex justify-center mt-40 md:mt-20">
+                    <!-- <div data-anim-child="slide-up delay-6" class="d-flex justify-center mt-40 md:mt-20">
                         <button class="hero__button d-flex flex-column items-center">
                             <div class="size-80 flex-center rounded-full bg-accent-1-50 blur-1 border-white-10">
                                 <i class="icon-play text-21 fw-500 text-white"></i>
@@ -26,7 +26,7 @@
 
                             <div class="text-13 text-white mt-20">PLAY INTRO VIDEO</div>
                         </button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -69,25 +69,31 @@
         </div>
 
         <div class="row x-gap-50 y-gap-30 pt-100 sm:pt-50">
+            @if($about[0])
             <div class="col-lg-4 col-sm-6">
                 <div data-anim-child="img-right cover-light-1 delay-2" class="rounded-16">
-                    <img src="{{asset('img/about/8/1.png')}}" alt="image" class="rounded-16 col-12">
+                    <img src="{{asset($image_url.$about[0]->image)}}" alt="image" class="rounded-16 col-12"style="height: 457px;width:357px;">
                 </div>
-                <div data-anim-child="fade delay-5" class="text-17 mt-30">A Sanctuary For The Senses</div>
+                <div data-anim-child="fade delay-5" class="text-17 mt-30">{{$about[0]->name}}</div>
             </div>
+            @endif
+            @if($about[1])
             <div class="col-lg-4 col-sm-6">
                 <div class="pt-100 md:pt-0">
                     <div data-anim-child="img-right cover-light-1 delay-3" class="rounded-16">
-                        <img src="{{asset('img/about/8/2.png')}}" alt="image" class="rounded-16 col-12">
+                        <img src="{{asset($image_url.$about[1]->image)}}" alt="image" class="rounded-16 col-12" style="height: 457px;width:357px;">
                     </div>
                 </div>
             </div>
+            @endif
+            @if($about[2])
             <div class="col-lg-4 col-sm-6">
                 <div data-anim-child="img-right cover-light-1 delay-4" class="rounded-16">
-                    <img src="{{asset('img/about/8/3.png')}}" alt="image" class="rounded-16 col-12">
+                    <img src="{{asset($image_url.$about[2]->image)}}" alt="image" class="rounded-16 col-12" style="height: 457px;width:357px;">
                 </div>
-                <div data-anim-child="fade delay-5" class="text-17 mt-30">2023 Mountain Travelers Choice</div>
+                <div data-anim-child="fade delay-5" class="text-17 mt-30">{{$about[2]->name}}</div>
             </div>
+            @endif
         </div>
     </div>
 </section>
@@ -121,7 +127,7 @@
     </div>
 </section>
 
-<section class="layout-pb-lg">
+<!-- <section class="layout-pb-lg">
     <div data-anim-wrap class="container">
         <div class="row justify-center text-center">
             <div data-split='lines' data-anim-child="split-lines delay-2" class="col-auto">
@@ -246,7 +252,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <section data-anim-wrap class="cta -type-1">
     <div class="cta__bg px-60 sm:px-15">
@@ -304,7 +310,7 @@
 
                             <div class="d-flex items-center text-white">
                                 <i class="icon-size text-20 mr-10"></i>
-                                {{$item->diameter}} m<sup>2</sup> 
+                                {{$item->diameter}} m<sup>2</sup>
                             </div>
 
                             <div class="d-flex items-center text-white">
@@ -332,7 +338,7 @@
     </div>
 </section>
 
-<section class="layout-pt-lg">
+<!-- <section class="layout-pt-lg">
     <div class="container">
         <div data-anim-wrap class="row y-gap-30 items-center">
             <div data-anim-child="img-right cover-light-1 delay-2" class="col-md-6">
@@ -400,12 +406,12 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
-<section data-anim-wrap class="relative z-0 layout-pt-md layout-pb-md md:pt-0">
+<section data-anim-wrap class="relative z-0 layout-pt-md layout-pb-md " style="margin-top: 5rem;margin-bottom: 5rem;">
     <div class="sectionBg -type-2 overflow-hidden">
         <div class="sectionBg__bg bg-accent-1 rounded-16"></div>
-        <img src="{{asset('img/about/23/1.png')}}" alt="image">
+        <img src="{{asset('img/cta/8/1.png')}}" alt="image">
     </div>
 
     <div class="container">
@@ -413,7 +419,7 @@
             <div class="col-xl-6 col-lg-7">
                 <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-1 lg-1 md-1 sm-1 base-1" data-pagination="js-slider3-pagination">
                     <div class="swiper-wrapper">
-
+                        @foreach($testimonial as $item)
                         <div class="swiper-slide">
                             <div data-anim-child="slide-up delay-1" class="mb-50 md:mb-20">
                                 <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -436,123 +442,19 @@
 
                             <div data-split='lines' data-anim-child="split-lines delay-3">
                                 <div class="text-sec text-40 lg:text-30 md:text-24 text-white">
-                                    “Some places are so good to stay in, you don’t want to generate a rush on them. The Swiss Resort lodge hotel in London is one of them.”
+                                    “{{$item->details}}”
                                 </div>
                             </div>
 
                             <div data-anim-child="slide-up delay-6" class="d-flex items-center mt-50 md:mt-20">
-                                <img src="{{asset('img/avatars/1/1.png')}}" alt="image" class="size-80">
+                                <img src="{{asset($image_url.$item->image)}}" alt="image" class="size-80">
                                 <div class="ml-20">
-                                    <div class="text-white">Annette Black</div>
-                                    <div class="text-15 text-white">UX / UI Designer</div>
+                                    <div class="text-white">{{$item->person_name}}</div>
+                                    <div class="text-15 text-white">{{$item->person_designation }}</div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="swiper-slide">
-                            <div data-anim-child="slide-up delay-1" class="mb-50 md:mb-20">
-                                <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g filter="url(#filter0_d_524_698)">
-                                        <path d="M9.67883 38C6.64234 38 4.27007 36.9524 2.56204 34.8571C0.854015 32.6667 0 29.4286 0 25.1429C0 20.6667 0.99635 16.381 2.98905 12.2857C5.07664 8.19048 8.01825 4.14286 11.8139 0.142864C11.9088 0.0476213 12.0511 0 12.2409 0C12.5255 0 12.7153 0.142858 12.8102 0.428574C13 0.619048 13.0474 0.857143 12.9526 1.14286C10.6752 4.19048 9.10949 7.14286 8.25548 10C7.49635 12.7619 7.11679 15.8571 7.11679 19.2857C7.11679 21.8571 7.44891 23.8571 8.11314 25.2857C8.77737 26.7143 9.67883 28 10.8175 29.1429L5.40876 30.1429C5.31387 28.5238 5.74088 27.2857 6.68978 26.4286C7.73358 25.5714 9.06205 25.1429 10.6752 25.1429C12.6679 25.1429 14.1861 25.7143 15.2299 26.8571C16.3686 28 16.938 29.5714 16.938 31.5714C16.938 33.6667 16.2737 35.2857 14.9453 36.4286C13.7117 37.4762 11.9562 38 9.67883 38ZM31.5985 38C28.562 38 26.1898 36.9524 24.4818 34.8571C22.8686 32.6667 22.062 29.4286 22.062 25.1429C22.062 20.5714 23.0584 16.2381 25.0511 12.1429C27.0438 8.04762 29.9854 4.04762 33.8759 0.142864C33.9708 0.0476213 34.1131 0 34.3029 0C34.5876 0 34.7774 0.142858 34.8723 0.428574C35.062 0.619048 35.1095 0.857143 35.0146 1.14286C32.7372 4.19048 31.1715 7.14286 30.3175 10C29.5584 12.7619 29.1788 15.8571 29.1788 19.2857C29.1788 21.8571 29.4635 23.9048 30.0328 25.4286C30.6971 26.8571 31.5985 28.0952 32.7372 29.1429L27.4708 30.1429C27.3759 28.5238 27.8029 27.2857 28.7518 26.4286C29.7007 25.5714 31.0292 25.1429 32.7372 25.1429C34.7299 25.1429 36.2482 25.7143 37.292 26.8571C38.4307 28 39 29.5714 39 31.5714C39 33.6667 38.3358 35.2857 37.0073 36.4286C35.7737 37.4762 33.9708 38 31.5985 38Z" fill="white" />
-                                    </g>
-                                    <defs>
-                                        <filter id="filter0_d_524_698" x="0" y="0" width="45" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                            <feOffset dx="6" dy="6" />
-                                            <feComposite in2="hardAlpha" operator="out" />
-                                            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0" />
-                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_524_698" />
-                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_524_698" result="shape" />
-                                        </filter>
-                                    </defs>
-                                </svg>
-                            </div>
-
-                            <div data-split='lines' data-anim-child="split-lines delay-3">
-                                <div class="text-sec text-40 lg:text-30 md:text-24 text-white">
-                                    “Some places are so good to stay in, you don’t want to generate a rush on them. The Swiss Resort lodge hotel in London is one of them.”
-                                </div>
-                            </div>
-
-                            <div data-anim-child="slide-up delay-6" class="d-flex items-center mt-50 md:mt-20">
-                                <img src="{{asset('img/avatars/1/2.png')}}" alt="image" class="size-80">
-                                <div class="ml-20">
-                                    <div class="text-white">Annette Black</div>
-                                    <div class="text-15 text-white">UX / UI Designer</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div data-anim-child="slide-up delay-1" class="mb-50 md:mb-20">
-                                <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g filter="url(#filter0_d_524_698)">
-                                        <path d="M9.67883 38C6.64234 38 4.27007 36.9524 2.56204 34.8571C0.854015 32.6667 0 29.4286 0 25.1429C0 20.6667 0.99635 16.381 2.98905 12.2857C5.07664 8.19048 8.01825 4.14286 11.8139 0.142864C11.9088 0.0476213 12.0511 0 12.2409 0C12.5255 0 12.7153 0.142858 12.8102 0.428574C13 0.619048 13.0474 0.857143 12.9526 1.14286C10.6752 4.19048 9.10949 7.14286 8.25548 10C7.49635 12.7619 7.11679 15.8571 7.11679 19.2857C7.11679 21.8571 7.44891 23.8571 8.11314 25.2857C8.77737 26.7143 9.67883 28 10.8175 29.1429L5.40876 30.1429C5.31387 28.5238 5.74088 27.2857 6.68978 26.4286C7.73358 25.5714 9.06205 25.1429 10.6752 25.1429C12.6679 25.1429 14.1861 25.7143 15.2299 26.8571C16.3686 28 16.938 29.5714 16.938 31.5714C16.938 33.6667 16.2737 35.2857 14.9453 36.4286C13.7117 37.4762 11.9562 38 9.67883 38ZM31.5985 38C28.562 38 26.1898 36.9524 24.4818 34.8571C22.8686 32.6667 22.062 29.4286 22.062 25.1429C22.062 20.5714 23.0584 16.2381 25.0511 12.1429C27.0438 8.04762 29.9854 4.04762 33.8759 0.142864C33.9708 0.0476213 34.1131 0 34.3029 0C34.5876 0 34.7774 0.142858 34.8723 0.428574C35.062 0.619048 35.1095 0.857143 35.0146 1.14286C32.7372 4.19048 31.1715 7.14286 30.3175 10C29.5584 12.7619 29.1788 15.8571 29.1788 19.2857C29.1788 21.8571 29.4635 23.9048 30.0328 25.4286C30.6971 26.8571 31.5985 28.0952 32.7372 29.1429L27.4708 30.1429C27.3759 28.5238 27.8029 27.2857 28.7518 26.4286C29.7007 25.5714 31.0292 25.1429 32.7372 25.1429C34.7299 25.1429 36.2482 25.7143 37.292 26.8571C38.4307 28 39 29.5714 39 31.5714C39 33.6667 38.3358 35.2857 37.0073 36.4286C35.7737 37.4762 33.9708 38 31.5985 38Z" fill="white" />
-                                    </g>
-                                    <defs>
-                                        <filter id="filter0_d_524_698" x="0" y="0" width="45" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                            <feOffset dx="6" dy="6" />
-                                            <feComposite in2="hardAlpha" operator="out" />
-                                            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0" />
-                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_524_698" />
-                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_524_698" result="shape" />
-                                        </filter>
-                                    </defs>
-                                </svg>
-                            </div>
-
-                            <div data-split='lines' data-anim-child="split-lines delay-3">
-                                <div class="text-sec text-40 lg:text-30 md:text-24 text-white">
-                                    “Some places are so good to stay in, you don’t want to generate a rush on them. The Swiss Resort lodge hotel in London is one of them.”
-                                </div>
-                            </div>
-
-                            <div data-anim-child="slide-up delay-6" class="d-flex items-center mt-50 md:mt-20">
-                                <img src="{{asset('img/avatars/1/3.png')}}" alt="image" class="size-80">
-                                <div class="ml-20">
-                                    <div class="text-white">Annette Black</div>
-                                    <div class="text-15 text-white">UX / UI Designer</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div data-anim-child="slide-up delay-1" class="mb-50 md:mb-20">
-                                <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g filter="url(#filter0_d_524_698)">
-                                        <path d="M9.67883 38C6.64234 38 4.27007 36.9524 2.56204 34.8571C0.854015 32.6667 0 29.4286 0 25.1429C0 20.6667 0.99635 16.381 2.98905 12.2857C5.07664 8.19048 8.01825 4.14286 11.8139 0.142864C11.9088 0.0476213 12.0511 0 12.2409 0C12.5255 0 12.7153 0.142858 12.8102 0.428574C13 0.619048 13.0474 0.857143 12.9526 1.14286C10.6752 4.19048 9.10949 7.14286 8.25548 10C7.49635 12.7619 7.11679 15.8571 7.11679 19.2857C7.11679 21.8571 7.44891 23.8571 8.11314 25.2857C8.77737 26.7143 9.67883 28 10.8175 29.1429L5.40876 30.1429C5.31387 28.5238 5.74088 27.2857 6.68978 26.4286C7.73358 25.5714 9.06205 25.1429 10.6752 25.1429C12.6679 25.1429 14.1861 25.7143 15.2299 26.8571C16.3686 28 16.938 29.5714 16.938 31.5714C16.938 33.6667 16.2737 35.2857 14.9453 36.4286C13.7117 37.4762 11.9562 38 9.67883 38ZM31.5985 38C28.562 38 26.1898 36.9524 24.4818 34.8571C22.8686 32.6667 22.062 29.4286 22.062 25.1429C22.062 20.5714 23.0584 16.2381 25.0511 12.1429C27.0438 8.04762 29.9854 4.04762 33.8759 0.142864C33.9708 0.0476213 34.1131 0 34.3029 0C34.5876 0 34.7774 0.142858 34.8723 0.428574C35.062 0.619048 35.1095 0.857143 35.0146 1.14286C32.7372 4.19048 31.1715 7.14286 30.3175 10C29.5584 12.7619 29.1788 15.8571 29.1788 19.2857C29.1788 21.8571 29.4635 23.9048 30.0328 25.4286C30.6971 26.8571 31.5985 28.0952 32.7372 29.1429L27.4708 30.1429C27.3759 28.5238 27.8029 27.2857 28.7518 26.4286C29.7007 25.5714 31.0292 25.1429 32.7372 25.1429C34.7299 25.1429 36.2482 25.7143 37.292 26.8571C38.4307 28 39 29.5714 39 31.5714C39 33.6667 38.3358 35.2857 37.0073 36.4286C35.7737 37.4762 33.9708 38 31.5985 38Z" fill="white" />
-                                    </g>
-                                    <defs>
-                                        <filter id="filter0_d_524_698" x="0" y="0" width="45" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                            <feOffset dx="6" dy="6" />
-                                            <feComposite in2="hardAlpha" operator="out" />
-                                            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0" />
-                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_524_698" />
-                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_524_698" result="shape" />
-                                        </filter>
-                                    </defs>
-                                </svg>
-                            </div>
-
-                            <div data-split='lines' data-anim-child="split-lines delay-3">
-                                <div class="text-sec text-40 lg:text-30 md:text-24 text-white">
-                                    “Some places are so good to stay in, you don’t want to generate a rush on them. The Swiss Resort lodge hotel in London is one of them.”
-                                </div>
-                            </div>
-
-                            <div data-anim-child="slide-up delay-6" class="d-flex items-center mt-50 md:mt-20">
-                                <img src="{{asset('img/avatars/1/4.png')}}" alt="image" class="size-80">
-                                <div class="ml-20">
-                                    <div class="text-white">Annette Black</div>
-                                    <div class="text-15 text-white">UX / UI Designer</div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
 
@@ -565,7 +467,7 @@
     </div>
 </section>
 
-<section class="layout-pt-md layout-pb-md">
+<!-- <section class="layout-pt-md layout-pb-md">
     <div data-anim-wrap class="container">
         <div class="row justify-center text-center">
             <div class="col-xl-10 col-lg-11">
@@ -595,13 +497,13 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
-<div class="px-60">
+<div class="px-60" style="margin-bottom: 5rem;">
     <div class="line -horizontal bg-border"></div>
 </div>
 
-<section class="layout-pt-lg pb-30">
+<!-- <section class="layout-pt-lg pb-30">
     <div data-anim-wrap class="px-60 md:px-20">
         <div class="row justify-center text-center">
             <div data-split='lines' data-anim-child="split-lines delay-2" class="col-auto">
@@ -644,5 +546,5 @@
 
         </div>
     </div>
-</section>
+</section> -->
 @endsection
