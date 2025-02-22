@@ -155,7 +155,7 @@
 
             @foreach($room_or_apartment as $item)
             <div class="col-lg-4 col-md-6">
-                <a href="rooms-single-1.html" data-anim-child="slide-up delay-2" class="roomCard -type-2 -hover-button-center d-block bg-accent-1 rounded-16 overflow-hidden">
+                <a href="{{route('roomOrApartmentDetails',$item->id)}}" data-anim-child="slide-up delay-2" class="roomCard -type-2 -hover-button-center d-block bg-accent-1 rounded-16 overflow-hidden">
                     <div class="roomCard__image -no-line ratio ratio-45:43 -hover-button-center__wrap">
                         <img src="{{asset($image_url.$item->image)}}" alt="image" class="img-ratio">
 

@@ -1538,13 +1538,13 @@ function initMapSingle() {
   const map = new google.maps.Map(document.querySelector('.js-map-single'), {
     zoom: 12,
     center: {
-      lat: 40.8,
-      lng: -74.02
+      lat: 23.77,
+      lng: 90.41
     }
   })
 
-  const locations = [
-    { lat: 40.800610, lng: -74.035242 },
+  const locations = [ , 
+    { lat: 23.77269943722782, lng: 90.41610255549833 },
   ]
 
   const markers = locations.map((location) => {

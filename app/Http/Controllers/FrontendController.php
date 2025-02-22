@@ -46,6 +46,21 @@ class FrontendController extends Controller
         $data['room_or_apartment'] = $room_or_apartment->ok() ? json_decode($room_or_apartment->body()) : [];
         return view('room-or-apartment', $data);
     }
+    public function roomOrApartmentDetails($id)
+    {
+        $data = [];
+        $room_or_apartment = Http::get($this->api . '/room-or-apartment-details/' . $id);
+        // $facilities = Http::get($this->api . '/hotel-facilities');
+
+        // $data['facilities'] = $facilities->ok() ? json_decode($facilities->body()) : [];
+        if ($room_or_apartment->ok()) {
+            $data['room'] = json_decode($room_or_apartment->body());
+        } else {
+            return back()->with('No data found');
+        }
+
+        return view('room-or-apartment-details', $data);
+    }
     public function contact()
     {
         $data = [];
@@ -63,6 +78,12 @@ class FrontendController extends Controller
         $data['message'] = $request->message;
         $response = Http::accept('application/json')->post($this->api . '/save-message', $data);
 
-        dd($response);
+        if ($response->ok()) {
+            session()->flash('message', 'Your query submitted successfully.');
+            return to_route('contact');
+        } else {
+            session()->flash('message', 'Something went wrong! Please try again later.');
+            return to_route('contact');
+        }
     }
 }

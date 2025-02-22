@@ -45,6 +45,11 @@
                 <p class="lh-17 mt-30">
                     {{$setup->contact_body}}
                 </p>
+                @if(session()->has('message'))
+                <div class="d-flex items-center justify-between bg-info-1 px-30 py-30 rounded-8">
+                    {{session('message')}}
+                </div>
+                @endif
                 <form action="{{route('saveMessage')}}" method="post">
                     @csrf
                     <div class="contactForm row y-gap-30 pt-60">
@@ -92,7 +97,28 @@
 
 <section class="relative layout-pt-lg layout-pb-lg md:pt-0 bg-accent-1" style="margin-bottom: 10rem;;">
     <div class="sectionBg col-md-6 -left z-1">
-        <div class="h-full md:h-map md: mb-40 js-map-single"></div>
+        <div class="mapouter">
+            <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1278&amp;height=756&amp;hl=en&amp;q=POLICE PLAZA CONCORD SHOPPING MALL, GULSHAN- 1, DHAKA, BANGLADESH&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+            <style>
+                .mapouter {
+                    position: relative;
+                    text-align: right;
+                    width: 100%;
+                    height: 756px;
+                }
+
+                .gmap_canvas {
+                    overflow: hidden;
+                    background: none !important;
+                    width: 100%;
+                    height: 756px;
+                }
+
+                .gmap_iframe {
+                    height: 756px !important;
+                }
+            </style>
+        </div>
     </div>
 
     <div class="container">
