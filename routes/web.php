@@ -10,4 +10,6 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/room-or-apartments-details/{id}', 'roomOrApartmentDetails')->name('roomOrApartmentDetails');
     Route::get('/contact-us', 'contact')->name('contact');
     Route::post('/save-message', 'saveMessage')->name('saveMessage');
+
+    Route::post('/check-room-availability', 'checkRoomAvailability')->name('checkRoomAvailability');
 });

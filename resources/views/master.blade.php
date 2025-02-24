@@ -5,6 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{csrf_token()}}">
 
   <!-- Google fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -30,7 +31,7 @@
         <img src="{{asset($image_url.$setup->logo)}}" alt="logo">
       </div>
 
-    
+
     </div>
 
     <div class="menuFullScreen__mobile__bg js-menuFullScreen-mobile-bg"></div>
@@ -372,10 +373,19 @@
   </main>
 
   <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
   <script src="../../../unpkg.com/%40googlemaps/markerclusterer%402.5.3/dist/index.min.js"></script>
   <script src="{{asset('js/vendors.js')}}"></script>
   <script src="{{asset('js/main.js')}}"></script>
+
+  <script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  </script>
 </body>
 
 
