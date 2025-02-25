@@ -12,4 +12,8 @@ Route::controller(FrontendController::class)->group(function () {
     Route::post('/save-message', 'saveMessage')->name('saveMessage');
 
     Route::post('/check-room-availability', 'checkRoomAvailability')->name('checkRoomAvailability');
+
+    Route::post('/room-reservation', 'roomReservation')->name('roomReservation');
+    Route::post('/check-customer-existence', 'checkCustomerExistence')->name('checkCustomerExistence');
+    Route::get('/money-receipt', 'moneyReceipt')->name('moneyReceipt');
 });

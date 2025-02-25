@@ -55,7 +55,7 @@
                 </div>
 
                 <div data-anim-child="slide-up delay-5">
-                    <button class="button -type-1 mx-auto mt-50 md:mt-30">
+                    <a href="{{route('roomOrApartment')}}" class="button -type-1 mx-auto mt-50 md:mt-30">
                         <i class="-icon">
                             <svg width="50" height="30" viewBox="0 0 50 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M35.8 28.0924C43.3451 28.0924 49.4616 21.9759 49.4616 14.4308C49.4616 6.88577 43.3451 0.769287 35.8 0.769287C28.255 0.769287 22.1385 6.88577 22.1385 14.4308C22.1385 21.9759 28.255 28.0924 35.8 28.0924Z" stroke="#122223" />
@@ -63,7 +63,7 @@
                             </svg>
                         </i>
                         Book now
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -268,7 +268,7 @@
                     Luxury Awaits.<br class="lg:d-none"> Book Your Stay Today!
                 </h2>
 
-                <button class="button -md -type-2 bg-accent-2 -accent-1 rounded-16 mx-auto mt-40 md:mt-30">BOOK NOW</button>
+                <a  href="{{route('roomOrApartment')}}" class="button -md -type-2 bg-accent-2 -accent-1 rounded-16 mx-auto mt-40 md:mt-30">BOOK NOW</a>
             </div>
         </div>
     </div>

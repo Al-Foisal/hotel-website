@@ -28,7 +28,7 @@
       </div>
 
       <div style="left: 90%;">
-        <img src="{{asset($image_url.$setup->logo)}}" alt="logo">
+        <img src="{{asset($image_url.$setup->logo)}}" style="height: 70px;">
       </div>
 
 
@@ -53,7 +53,7 @@
 
         <div class="menuFullScreen-links__item">
           <a href="{{route('home')}}">
-            HOME
+            Home
             <!-- <i class="icon-arrow-right"></i>
             <i class="icon-chevron-right"></i> -->
           </a>
@@ -86,27 +86,12 @@
 
         </div>
 
-        <div class="menuFullScreen-links__item">
-          <a href="#">
-            PAGES
-          </a>
 
-
-
-        </div>
-
-        <div class="menuFullScreen-links__item">
-          <a href="#">
-            BLOG
-          </a>
-
-
-        </div>
 
 
         <div class="menuFullScreen-links__item">
           <a href="{{route('contact')}}">
-            CONTACT
+            Contact us
           </a>
         </div>
       </div>
@@ -115,7 +100,7 @@
     <div class="menuFullScreen__right js-menuFullScreen-right">
       <div class="text-center">
         <div class="mb-100">
-          <img src="{{asset($image_url.$setup->logo)}}" alt="image">
+          <img src="{{asset($image_url.$setup->logo)}}" style="height: 70px;">
         </div>
 
         <div class="text-sec lh-11 fw-500 text-40">
@@ -157,7 +142,7 @@
     </div>
 
     <div class="menuFullScreen__bottomMobile js-menuFullScreen-buttomMobile">
-      <a href="#" class="button rounded-200 w-1/1 py-20 -light-1 bg-accent-2">
+      <a href="{{route('roomOrApartment')}}" class="button rounded-200 w-1/1 py-20 -light-1 bg-accent-2">
         BOOK YOUR STAY
       </a>
 
@@ -211,7 +196,7 @@
 
           <div class="header__center">
             <div class="header__logo">
-              <img src="{{asset($image_url.$setup->logo)}}" alt="logo">
+              <img src="{{asset($image_url.$setup->logo)}}" style="height: 70px;">
             </div>
           </div>
 
@@ -220,7 +205,7 @@
               EN <i class="icon-chevron-down ml-15"></i>
             </button> -->
 
-            <a href="#" class="button -md -accent-1 rounded-16 xl:d-none">
+            <a href="{{route('roomOrApartment')}}" class="button -md -accent-1 rounded-16 xl:d-none">
               BOOK YOUR STAY
             </a>
           </div>
@@ -277,22 +262,22 @@
                 <div class="col-sm-6">
                   <div class="y-gap-15 text-15 text-white-60 mt-60 md:mt-20">
 
-                    <a class="d-block" href="#">
+                    <a class="d-block" href="{{route('about')}}">
                       About Hotel
                     </a>
 
-                    <a class="d-block" href="#">
+                    <a class="d-block" href="{{route('roomOrApartment')}}">
                       Our Rooms
                     </a>
 
-                    <a class="d-block" href="#">
+                    <a class="d-block" href="{{route('contact')}}">
                       Contact
                     </a>
 
                   </div>
                 </div>
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                   <div class="y-gap-15 text-15 text-white-60 mt-60 md:mt-20">
 
                     <a class="d-block" href="#">
@@ -308,7 +293,7 @@
                     </a>
 
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -336,7 +321,7 @@
             <div class="col-sm-auto">
               <div class="footer__bottom_center">
                 <div class="d-flex justify-center">
-                  <img src="{{asset($image_url.$setup->logo)}}" alt="logo">
+                  <img src="{{asset($image_url.$setup->logo)}}" style="height: 70px;">
                 </div>
               </div>
             </div>
@@ -385,6 +370,17 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
+  </script>
+
+  <script>
+    function printContent(el) {
+      var restorepage = $('body').html();
+      var printcontent = $('#' + el).clone();
+      $('body').empty().html(printcontent);
+      window.print();
+      $('body').html(restorepage);
+      location.reload();
+    }
   </script>
 </body>
 

@@ -202,7 +202,7 @@
                     Luxury Awaits.<br class="lg:d-none"> Book Your Stay Today!
                 </h2>
 
-                <button class="button -md -type-2 bg-accent-2 -accent-1 mx-auto mt-40">BOOK NOW</button>
+                <a href="{{route('roomOrApartment')}}" class="button -md -type-2 bg-accent-2 -accent-1 mx-auto mt-40">BOOK NOW</a>
             </div>
         </div>
     </div>

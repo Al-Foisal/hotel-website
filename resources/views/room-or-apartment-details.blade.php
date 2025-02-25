@@ -154,9 +154,16 @@
                     <button class="button -md bg-accent-2 -dark-1 w-1/1 mt-40" onclick="checkRoomAvailability(this,'{{$room->id}}')" data-url="{{route('checkRoomAvailability')}}">Check Availability</button>
 
                 </div>
-                <form action="" method="post">
+                <form action="{{route('roomReservation')}}" method="post" id="reservationForm" style="display: none;">
                     @csrf
+                    <input type="hidden" id="rf_from_date" name="rf_from_date" value="">
+                    <input type="hidden" id="rf_to_date" name="rf_to_date" value="">
                     <input type="hidden" name="room_id" value="{{$room->id}}">
+                    <input type="hidden" name="customer_id" value="" id="customer_id">
+                    <input type="hidden" name="room_type" value="{{$room->type}}">
+                    <input type="hidden" name="total" id="from_total" value="">
+                    <input type="hidden" name="paid_amount" value="{{$room->price}}">
+                    <input type="hidden" name="days" value="" id="days">
                     <div class="sidebar -rooms-single px-40 py-40 md:px-30 md:py-30 border-1 shadow-1">
                         <h3 class="text-30 mb-30">Booking details</h3>
 
@@ -164,8 +171,16 @@
                             <div class="col-md-12">
 
                                 <div class="form-input ">
+                                    <label class="">Phone</label>
+                                    <input type="text" required class="form-control" placeholder="Enter phone" name="c_phone" id="c_phone" onkeyup="checkCustomerExistence(this)" data-url="{{route('checkCustomerExistence')}}">
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-input ">
                                     <label class="">Full Name</label>
-                                    <input type="text" required class="form-control" placeholder="Enter your full name" id="c_full_name">
+                                    <input type="text" required class="form-control" placeholder="Enter your full name" name="c_full_name" id="c_full_name">
                                 </div>
 
                             </div>
@@ -173,15 +188,7 @@
 
                                 <div class="form-input ">
                                     <label class="">Email</label>
-                                    <input type="email" required class="form-control" placeholder="Enter email" id="c_email">
-                                </div>
-
-                            </div>
-                            <div class="col-md-12">
-
-                                <div class="form-input ">
-                                    <label class="">Phone</label>
-                                    <input type="text" required class="form-control" placeholder="Enter phone" id="c_phone">
+                                    <input type="email" required class="form-control" placeholder="Enter email" name="c_email" id="c_email">
                                 </div>
 
                             </div>
@@ -189,7 +196,19 @@
 
                                 <div class="form-input ">
                                     <label class="">Your Address</label>
-                                    <input type="text" required class="form-control" placeholder="Enter address" id="c_address">
+                                    <input type="text" required class="form-control" placeholder="Enter address" name="c_address" id="c_address">
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-input ">
+                                    <label class="">Your Gender</label>
+                                    <select name="c_gender" id="c_gender" class="form-control" require>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
+                                    </select>
                                 </div>
 
                             </div>
@@ -198,7 +217,7 @@
 
 
 
-                        <button class="button -md bg-info-2 -dark-1 w-1/1 mt-40" style="color: white;" type="submit">Check Availability</button>
+                        <button class="button -md bg-info-2 -dark-1 w-1/1 mt-40" style="color: white;" type="submit">Make Your Reservation</button>
 
                     </div>
                 </form>
@@ -733,13 +752,23 @@
     function checkRoomAvailability(e, room_id) {
         var url = $(e).data('url');
         var from_date = $("#from_date").val();
-        var to_date = $("#to_date").val();
+        var to_date = $("#from_date").val();
+
+        var room_price = '{{$room->price}}';
 
         if (!from_date || !to_date) {
             $("#abMessage").show();
             $("#abMessage").addClass('bg-error-1');
             $("#abMessage").html("The from date and to date is required.");
         }
+
+        let date1 = new Date($("#from_date").val());
+        let date2 = new Date($("#to_date").val());
+
+        let diffTime = Math.abs(date2 - date1);
+        let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        $("#days").val(diffDays ?? 0);
+        $("#from_total").val((diffDays * room_price) ?? 0);
 
         $.ajax({
             url: url,
@@ -756,10 +785,46 @@
                     $("#abMessage").show();
                     $("#abMessage").addClass('bg-error-1');
                     $("#abMessage").html("This room is not available on your searching date range!Please contact with us over the phone.");
+                    $("#reservationForm").hide();
+                    $("#rf_from_date").val('');
+                    $("#rf_to_date").val('');
                 } else {
                     $("#abMessage").show();
                     $("#abMessage").addClass('bg-success-1');
                     $("#abMessage").html("This room is available on your searching date range.");
+                    $("#reservationForm").show();
+                    $("#rf_from_date").val(from_date);
+                    $("#rf_to_date").val(to_date);
+                }
+            },
+        });
+    };
+
+    function checkCustomerExistence(e) {
+        var url = $(e).data('url');
+        var phone = $("#c_phone").val();
+
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                phone: phone,
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data.status == true) {
+                    $("#customer_id").val(data.customer.id);
+                    $("#c_full_name").val(data.customer.name);
+                    $("#c_email").val(data.customer.email);
+                    $("#c_address").val(data.customer.address);
+                    document.getElementById("c_gender").value = data.customer.gender;
+                } else {
+                    $("#customer_id").val('');
+                    $("#c_full_name").val('');
+                    $("#c_email").val('');
+                    $("#c_address").val('');
+                    document.getElementById("c_gender").value = null;
                 }
             },
         });

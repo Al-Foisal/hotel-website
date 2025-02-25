@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -90,6 +91,100 @@ class FrontendController extends Controller
         } else {
             return response()->json(['status' => false]);
         }
+    }
+
+    public function checkCustomerExistence(Request $request)
+    {
+        $customer = DB::table('customers')->where('phone', $request->phone)->first();
+
+        if ($customer) {
+            return response()->json([
+                'status' => true,
+                'customer' => $customer
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+            ]);
+        }
+    }
+    public function roomReservation(Request $request)
+    {
+        // dd($request->all());
+
+
+        DB::beginTransaction();
+        try {
+            $latest_bill = DB::table('room_reservations')->orderBy('id', 'desc')->first();
+
+            if (isset($latest_bill)) {
+                $invoice_number = date("y") . str_pad((int) $latest_bill->invoice + 1, 5, "0", STR_PAD_LEFT);
+                $invoice        = 1 + $latest_bill->invoice;
+            } else {
+                $invoice_number = date("y") . str_pad((int) 1, 5, "0", STR_PAD_LEFT);
+                $invoice        = 1;
+            }
+
+            if (!$request->customer_id) {
+                $customer_id = DB::table('customers')->insertGetId([
+                    'name' => $request->c_full_name,
+                    'email' => $request->c_email,
+                    'phone' => $request->c_phone,
+                    'address' => $request->c_address,
+                    'gender' => $request->c_gender,
+                ]);
+            }
+            $due = (int)$request->total - (int)$request->paid_amount;
+
+            $reservation_id = DB::table('room_reservations')->insertGetId([
+                'invoice_number' => $invoice_number,
+                'invoice' => $invoice,
+                'check_in' => $request->rf_from_date,
+                'check_out' => $request->rf_to_date,
+                'total' => $request->total,
+                'subtotal' => $request->total,
+                'paid_amount' => $request->paid_amount,
+                'due' => $due,
+                'customer_id' => $request->customer_id ? $request->customer_id : $customer_id
+            ]);
+
+
+            $room = DB::table('room_or_apartmets')->where('id', $request->room_id)->first();
+
+            $reseved_room_id = DB::table('room_reservation_details')->insertGetId([
+                'room_reservation_id' => $reservation_id,
+                'room_type' => $request->room_type,
+                'room_or_apartment_id' => $request->room_id,
+                'adult' => $room->adult ?? 0,
+                'child' => $room->child ?? 0,
+                'price' => $room->price ?? 0,
+            ]);
+
+            $data = [];
+            $data['customer'] = DB::table('customers')->where('id', $request->customer_id ? $request->customer_id : $customer_id)->first();
+            $data['reservation'] = DB::table('room_reservations')->where('id', $reservation_id)->first();
+            $data['room'] = $room;
+            $data['reserved_room'] = DB::table('room_reservation_details')->where('id', $reseved_room_id)->first();
+            $data['message'] = 'Reservation completed successfully';
+
+            DB::commit();
+
+            session()->put('data', $data);
+            return to_route('moneyReceipt');
+        } catch (Exception $th) {
+            DB::rollBack();
+
+            session()->flash('message', $th->getMessage());
+            return back();
+        }
+    }
+
+    public function moneyReceipt()
+    {
+        if (!session()->has('data')) {
+            return to_route('roomOrApartment');
+        }
+        return view('money-receipt');
     }
     public function contact()
     {
