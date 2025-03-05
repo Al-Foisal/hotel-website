@@ -132,6 +132,8 @@ class FrontendController extends Controller
                     'phone' => $request->c_phone,
                     'address' => $request->c_address,
                     'gender' => $request->c_gender,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]);
             }
             $due = (int)$request->total - (int)$request->paid_amount;
@@ -145,7 +147,9 @@ class FrontendController extends Controller
                 'subtotal' => $request->total,
                 'paid_amount' => $request->paid_amount,
                 'due' => $due,
-                'customer_id' => $request->customer_id ? $request->customer_id : $customer_id
+                'customer_id' => $request->customer_id ? $request->customer_id : $customer_id,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
 
@@ -158,6 +162,8 @@ class FrontendController extends Controller
                 'adult' => $room->adult ?? 0,
                 'child' => $room->child ?? 0,
                 'price' => $room->price ?? 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
             $data = [];

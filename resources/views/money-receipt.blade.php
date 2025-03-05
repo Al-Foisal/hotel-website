@@ -15,10 +15,10 @@
                 @endif
             </div>
             @if(session()->has('data'))
-            <div class="col-xl-10 col-lg-11" style="margin-top: 5rem;" id="printSection">
+            <div class="col-xl-10 col-lg-11 mt-40" style="margin-top: 5rem;">
 
 
-                <div class="bg-white mt-40">
+                <div class="bg-white" id="printSection">
                     <div class="px-100 py-100 md:px-20">
                         <div class="row justify-between">
                             <div class="col-12">
@@ -48,7 +48,7 @@
                         </div>
 
                         @php
-                        $room_type=DB::table('room_types')->where('id',session('data')['room']->room_type_id)->first()->name;
+                        $room_type=DB::table('room_categories')->where('id',session('data')['room']->room_category_id)->first()->name;
                         @endphp
                         <div class="row pt-50">
                             <div class="col-12">

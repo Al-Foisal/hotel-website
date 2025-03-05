@@ -34,7 +34,7 @@
             <div class="col-auto">
                 <div class="pageHero__content text-center" data-split='lines' data-anim-child="split-lines delay-3">
                     <div class="pageHero__subtitle text-white">৳{{$room->price}} PER NIGHT</div>
-                    <h1 class="pageHero__title text-white">{{$room->room_type->name??''}}</h1>
+                    <h1 class="pageHero__title text-white">{{$room->room_category->name??''}}</h1>
                     <p class="pageHero__text text-white">Indulge in luxury in our rooms and suites, featuring stunning views, elegant furnishings, and modern amenities.</p>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 </p>
 
 
-                <div class="line -horizontal bg-border mt-50 mb-50"></div>
+                <!-- <div class="line -horizontal bg-border mt-50 mb-50"></div>
                 <h2 class="text-40">Availability</h2>
 
                 <div class="js-calendar pt-40">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 @if(count($room->facilities)>0)
                 <div class="line -horizontal bg-border mt-50 mb-50"></div>
@@ -226,7 +226,7 @@
     </div>
 </section>
 
-<section class="layout-pt-lg layout-pb-lg bg-light-1">
+{{--<section class="layout-pt-lg layout-pb-lg bg-light-1">
     <div data-anim-wrap class="container">
         <div class="row justify-center text-center">
             <div data-split='lines' data-anim-child="split-lines delay-2" class="col-auto">
@@ -746,13 +746,13 @@
             </div>
         </div>
     </div>
-</section>
+</section>--}}
 
 <script>
     function checkRoomAvailability(e, room_id) {
         var url = $(e).data('url');
         var from_date = $("#from_date").val();
-        var to_date = $("#from_date").val();
+        var to_date = $("#to_date").val();
 
         var room_price = '{{$room->price}}';
 

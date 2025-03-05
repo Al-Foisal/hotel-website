@@ -1,36 +1,28 @@
 @extends('master')
 @section('title','Be charming person enjoying your mindset with our luxury')
 @section('content')
-<section data-anim-wrap class="hero -type-6">
-    <div data-anim-child="img-right cover-light-1 delay-2" class="hero__bg rounded-16">
-        <img src="{{asset('img/hero/6/1.png')}}" alt="image" class="img-ratio">
+
+<section data-anim-wrap class="hero -type-1 z-1">
+    <div data-anim-child="img-right cover-white" class="hero__bg">
+        <img src="{{asset('img/hero/6/1.png')}}" alt="image">
     </div>
 
-    <div class="container">
-        <div class="row justify-center">
-            <div class="col-auto">
-                <div class="hero__content text-center">
-                    <div data-anim-child="slide-up delay-4" class="hero__subtitle text-white">
+    <div data-anim-wrap class="container">
+        <div class="row justify-center text-center">
+            <div class="col-xl-8 col-lg-10">
+                <div data-split='lines' data-anim="split-lines delay-2" class="hero__content">
+                    <div class="hero__subtitle text-white">
                         STAY WITH US FEEL LIKE HOME
                     </div>
 
-                    <h1 data-anim-child="slide-up delay-5" class="hero__title text-white">
+                    <h2 class="hero__title text-white">
                         {{$setup->slogan}}
-                    </h1>
-
-                    <!-- <div data-anim-child="slide-up delay-6" class="d-flex justify-center mt-40 md:mt-20">
-                        <button class="hero__button d-flex flex-column items-center">
-                            <div class="size-80 flex-center rounded-full bg-accent-1-50 blur-1 border-white-10">
-                                <i class="icon-play text-21 fw-500 text-white"></i>
-                            </div>
-
-                            <div class="text-13 text-white mt-20">PLAY INTRO VIDEO</div>
-                        </button>
-                    </div> -->
+                    </h2>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 
 <section class="layout-pt-lg">
@@ -72,7 +64,7 @@
             @if($about[0])
             <div class="col-lg-4 col-sm-6">
                 <div data-anim-child="img-right cover-light-1 delay-2" class="rounded-16">
-                    <img src="{{asset($image_url.$about[0]->image)}}" alt="image" class="rounded-16 col-12"style="height: 457px;width:357px;">
+                    <img src="{{asset($image_url.$about[0]->image)}}" alt="image" class="rounded-16 col-12" style="height: 457px;width:357px;">
                 </div>
                 <div data-anim-child="fade delay-5" class="text-17 mt-30">{{$about[0]->name}}</div>
             </div>
@@ -268,7 +260,7 @@
                     Luxury Awaits.<br class="lg:d-none"> Book Your Stay Today!
                 </h2>
 
-                <a  href="{{route('roomOrApartment')}}" class="button -md -type-2 bg-accent-2 -accent-1 rounded-16 mx-auto mt-40 md:mt-30">BOOK NOW</a>
+                <a href="{{route('roomOrApartment')}}" class="button -md -type-2 bg-accent-2 -accent-1 rounded-16 mx-auto mt-40 md:mt-30">BOOK NOW</a>
             </div>
         </div>
     </div>

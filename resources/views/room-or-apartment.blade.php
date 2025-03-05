@@ -26,11 +26,13 @@
             {{session('message')}}
         </div>
         @endif
-        <div class="">
-            <div data-anim-child="slide-up delay-7" class="">
+        <div class="row x-gap-30 y-gap-30 pb-100 sm:pt-50" style="margin-bottom: 2rem;">
+            <div data-anim-child="slide-up delay-7" class="" style="border: 1px solid;
+    border-radius: 53px;
+    padding: 1rem 0 0 10rem;">
                 <form style="width: 59%;margin: auto;" action="{{route('roomOrApartment')}}">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 form-group">
                             <input type="date" name="from_date" class="form-control">
                         </div>
                         <div class="col-md-4">
@@ -68,7 +70,7 @@
                     </div>
 
                     <div class="roomCard__content text-center px-30 py-30">
-                        <h3 class="roomCard__title lh-065 text-40 md:text-24 text-white">{{$item->room_type->name??''}}</h3>
+                        <h3 class="roomCard__title lh-065 text-40 md:text-24 text-white">{{$item->room_category->name??''}}</h3>
 
                         <p class="text-white mt-30">
                             Lorem ipsum dolor sit amet, consectetur adipiscing

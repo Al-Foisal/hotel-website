@@ -176,43 +176,42 @@
   </div>
   <!-- cursor end -->
 
-  <main class="bg-light-1">
+  <main class="">
 
 
-    <header class="header -h-110 -blur js-header" data-add-bg="bg-accent-2" data-x="header" data-x-toggle="-is-menu-opened">
-      <div class="container">
-        <div class="header__container h-full items-center">
-          <div class="header__left d-flex items-center">
-            <div class="d-flex items-center js-menuFullScreen-toggle">
-              <i class="icon-menu text-9"></i>
-              <div class="text-15 uppercase ml-30 sm:d-none">Menu</div>
-            </div>
+    <header class="header -h-110 -mx-60 -blur -border-bottom-1 js-header" data-add-bg="bg-accent-1" data-x="header" data-x-toggle="-is-menu-opened">
+      <div class="header__container h-full items-center">
+        <div class="header__left d-flex items-center">
+          <button class="d-flex items-center cursor-pointer js-menuFullScreen-toggle">
+            <i class="icon-menu text-9 text-white"></i>
+            <div class="text-15 uppercase text-white ml-30 sm:d-none">Menu</div>
+          </button>
 
-            <div class="d-flex items-center ml-60 xl:d-none">
-              <i class="icon-phone text-20 mr-20"></i>
-              <div class="text-15 uppercase">{{$setup->phone}}</div>
-            </div>
+          <div class="d-flex items-center ml-90 xl:d-none">
+            <i class="icon-phone text-20 text-white mr-30"></i>
+            <div class="text-15 uppercase text-white">{{$setup->phone}}</div>
           </div>
+        </div>
 
-          <div class="header__center">
-            <div class="header__logo">
-              <img src="{{asset($image_url.$setup->logo)}}" style="height: 70px;">
-            </div>
+        <div class="header__center">
+          <div class="header__logo">
+            <img src="{{asset($image_url.$setup->logo)}}" style="height: 70px;">
           </div>
+        </div>
 
-          <div class="header__right d-flex items-center h-full">
-            <!-- <button class="button mr-30 xl:mr-0">
-              EN <i class="icon-chevron-down ml-15"></i>
-            </button> -->
+        <div class="header__right d-flex items-center h-full">
+          <!-- <button class="button text-white mr-30 xl:mr-0">
+            EN <i class="icon-chevron-down ml-15"></i>
+          </button> -->
 
-            <a href="{{route('roomOrApartment')}}" class="button -md -accent-1 rounded-16 xl:d-none">
-              BOOK YOUR STAY
-            </a>
-          </div>
+          <div class="line -vertical bg-white-10 h-full ml-90 mr-90 xl:d-none"></div>
+
+          <a href="{{route('roomOrApartment')}}" class="button -md -accent-1 rounded-16 xl:d-none text-white">
+            BOOK YOUR STAY
+          </a>
         </div>
       </div>
     </header>
-
 
     @yield('content')
 
