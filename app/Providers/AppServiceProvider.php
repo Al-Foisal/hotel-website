@@ -20,8 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $api = 'http://hotel.foisal/api';
-        $image_url='http://hotel.foisal/';
+        // $api = 'http://hotel.foisal/api';
+        // $image_url='http://hotel.foisal/';
+        $api = 'https://hotel.otitheesoftwaresolution.com/api';
+        $image_url='https://hotel.otitheesoftwaresolution.com/';
         // view()->share(['image_url' => $image_url]);
         view()->share(['image_url' => $image_url]);
 
