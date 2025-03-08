@@ -154,16 +154,15 @@
                     <button class="button -md bg-accent-2 -dark-1 w-1/1 mt-40" onclick="checkRoomAvailability(this,'{{$room->id}}')" data-url="{{route('checkRoomAvailability')}}">Check Availability</button>
 
                 </div>
-                <form action="{{route('roomReservation')}}" method="post" id="reservationForm" style="display: none;">
+                <form action="{{route('roomReservation')}}" method="post" id="reservationForm" style="display: block;">
                     @csrf
                     <input type="hidden" id="rf_from_date" name="rf_from_date" value="">
                     <input type="hidden" id="rf_to_date" name="rf_to_date" value="">
                     <input type="hidden" name="room_id" value="{{$room->id}}">
                     <input type="hidden" name="customer_id" value="" id="customer_id">
                     <input type="hidden" name="room_type" value="{{$room->type}}">
-                    <input type="hidden" name="total" id="from_total" value="">
-                    <input type="hidden" name="paid_amount" value="{{$room->price}}">
                     <input type="hidden" name="days" value="" id="days">
+                    <input type="hidden" name="discount_info" id="discount_info">
                     <div class="sidebar -rooms-single px-40 py-40 md:px-30 md:py-30 border-1 shadow-1">
                         <h3 class="text-30 mb-30">Booking details</h3>
 
@@ -171,15 +170,15 @@
                             <div class="col-md-12">
 
                                 <div class="form-input ">
-                                    <label class="">Phone</label>
-                                    <input type="text" required class="form-control" placeholder="Enter phone" name="c_phone" id="c_phone" onkeyup="checkCustomerExistence(this)" data-url="{{route('checkCustomerExistence')}}">
+                                    <!-- <label class="">Phone</label> -->
+                                    <input type="text" required class="form-control" placeholder="Enter your phone number" name="c_phone" id="c_phone" onkeyup="checkCustomerExistence(this)" data-url="{{route('checkCustomerExistence')}}">
                                 </div>
 
                             </div>
                             <div class="col-md-12">
 
                                 <div class="form-input ">
-                                    <label class="">Full Name</label>
+                                    <!-- <label class="">Full Name</label> -->
                                     <input type="text" required class="form-control" placeholder="Enter your full name" name="c_full_name" id="c_full_name">
                                 </div>
 
@@ -187,28 +186,73 @@
                             <div class="col-md-12">
 
                                 <div class="form-input ">
-                                    <label class="">Email</label>
-                                    <input type="email" required class="form-control" placeholder="Enter email" name="c_email" id="c_email">
+                                    <!-- <label class="">Email</label> -->
+                                    <input type="email" required class="form-control" placeholder="Enter your email" name="c_email" id="c_email">
                                 </div>
 
                             </div>
                             <div class="col-md-12">
 
                                 <div class="form-input ">
-                                    <label class="">Your Address</label>
-                                    <input type="text" required class="form-control" placeholder="Enter address" name="c_address" id="c_address">
+                                    <!-- <label class="">Your Address</label> -->
+                                    <input type="text" required class="form-control" placeholder="Enter your address" name="c_address" id="c_address">
                                 </div>
 
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-5">
 
                                 <div class="form-input ">
-                                    <label class="">Your Gender</label>
+                                    <!-- <label class="">Your Gender</label> -->
                                     <select name="c_gender" id="c_gender" class="form-control" require>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Others">Others</option>
                                     </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-7">
+
+                                <div class="form-input ">
+                                    <!-- <label class="">Promo Code</label> -->
+                                    <div class="d-flex justify-content-start">
+                                        <input type="text" class="form-control" placeholder="Coupon " name="c_promo" id="c_promo">
+                                        <button class="button -md bg-info-2" onclick="applyPromoCode(this)" data-url="{{route('applyPromoCode')}}" type="button"><i class="fas fa-check-square"></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-input ">
+                                    <label class="">Total Amount</label>
+                                    <input type="number" name="total" id="form_total" value="0" readonly class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-input ">
+                                    <label class="">Subtotal</label>
+                                    <input type="number" name="subtotal" value="0" class="form-control" id="c_subtotal" readonly>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-input ">
+                                    <label class="">Discount(tk)</label>
+                                    <input type="number" name="discounted_amount" id="c_discounted_amount" value="0" readonly class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-input ">
+                                    <label class="">Min. Payable Amount</label>
+                                    <input type="number" name="paid_amount" value="0" class="form-control" id="payable_amount">
                                 </div>
 
                             </div>
@@ -749,12 +793,18 @@
 </section>--}}
 
 <script>
+    var room_price = '{{$room->price}}';
+    var diffDays = 0;
+    var form_total = 0;
+    var subtotal = 0;
+    var discounted_amount = 0;
+
     function checkRoomAvailability(e, room_id) {
         var url = $(e).data('url');
         var from_date = $("#from_date").val();
         var to_date = $("#to_date").val();
 
-        var room_price = '{{$room->price}}';
+
 
         if (!from_date || !to_date) {
             $("#abMessage").show();
@@ -766,9 +816,25 @@
         let date2 = new Date($("#to_date").val());
 
         let diffTime = Math.abs(date2 - date1);
-        let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        form_total = Math.ceil(diffDays * room_price);
+
+        console.log(diffDays, form_total);
+
         $("#days").val(diffDays ?? 0);
-        $("#from_total").val((diffDays * room_price) ?? 0);
+        $("#form_total").val(form_total);
+        $("#c_subtotal").val(form_total);
+        $("#c_discounted_amount").val(0);
+
+        if (diffDays > 1) {
+            $("#payable_amount").attr('min', room_price);
+            $("#payable_amount").attr('max', form_total);
+            $("#payable_amount").val(room_price);
+        } else {
+            $("#payable_amount").attr('min', room_price);
+            $("#payable_amount").attr('max', form_total);
+            $("#payable_amount").val(form_total);
+        }
 
         $.ajax({
             url: url,
@@ -795,6 +861,55 @@
                     $("#reservationForm").show();
                     $("#rf_from_date").val(from_date);
                     $("#rf_to_date").val(to_date);
+                }
+            },
+        });
+    };
+
+    function applyPromoCode(e) {
+        var promo_code = $("#c_promo").val();
+        var url = $(e).data('url');
+
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                promo_code: promo_code,
+            },
+            dataType: "json",
+            success: function(data) {
+                // console.log('ss',data);
+                if (data.status != true) {
+                    alert('Invalid promo code applied.');
+
+                } else {
+                    alert('Promo code applied successfully.');
+
+                    var qData = data.item;
+                    $("#discount_info").val(JSON.stringify(qData));
+                    if (qData) {
+                        if (qData.discount_type == 'Percentage') {
+                            discounted_amount = Math.ceil((form_total * qData.discount) / 100);
+                        } else {
+                            discounted_amount = form_total - qData.discount;
+                        }
+
+                        subtotal = form_total - discounted_amount;
+
+                        $("#c_subtotal").val(subtotal);
+                        $("#c_discounted_amount").val(discounted_amount);
+
+                        if (diffDays > 1) {
+                            $("#payable_amount").attr('min', room_price);
+                            $("#payable_amount").attr('max', form_total);
+                            $("#payable_amount").val(room_price);
+                        } else {
+                            $("#payable_amount").attr('min', form_total);
+                            $("#payable_amount").attr('max', form_total);
+                            $("#payable_amount").val(form_total);
+                        }
+                    }
                 }
             },
         });

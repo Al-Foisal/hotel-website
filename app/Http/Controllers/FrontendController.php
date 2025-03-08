@@ -93,6 +93,22 @@ class FrontendController extends Controller
         }
     }
 
+    public function applyPromoCode(Request $request)
+    {
+        $data = DB::table('promo_codes')
+            ->where('promo_code', $request->promo_code)
+            ->whereDate('start_date', '<=', date('Y-m-d'))
+            ->whereDate('end_date', '>=', date('Y-m-d'))
+            ->where('status', 'Active')
+            ->first();
+
+        if ($data) {
+            return response()->json(['status' => true, 'item' => $data]);
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
+
     public function checkCustomerExistence(Request $request)
     {
         $customer = DB::table('customers')->where('phone', $request->phone)->first();
@@ -110,11 +126,12 @@ class FrontendController extends Controller
     }
     public function roomReservation(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
 
 
         DB::beginTransaction();
         try {
+            $discount_info = json_decode($request->discount_info);
             $latest_bill = DB::table('room_reservations')->orderBy('id', 'desc')->first();
 
             if (isset($latest_bill)) {
