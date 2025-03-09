@@ -1,5 +1,23 @@
 @extends('master')
 @section('title','Contact with us')
+@section('css')
+<style>
+    .table.-type-2 th {
+        padding: 5px 0;
+    }
+
+    .table.-type-2 td {
+        padding: 5px 0;
+    }
+
+    tr>td:last-child {
+        text-align: right;
+    }
+    tr>th:last-child {
+        text-align: right;
+    }
+</style>
+@endsection
 @section('content')
 
 <section class="layout-pt-lg layout-pb-lg">
@@ -68,7 +86,7 @@
 
                                             <td class="text-15">{{$room_type}}</td>
 
-                                            <td class="text-15">৳{{session('data')['reservation']->subtotal}}</td>
+                                            <td class="text-15 fw-500">৳{{session('data')['reservation']->total}}</td>
 
 
                                         </tr>
@@ -79,17 +97,27 @@
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Total</td>
-                                            <td class="fw-500">৳{{session('data')['reservation']->subtotal}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->subtotal)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="fw-500" style="text-align: right;">Discount</td>
+                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->discount_amount)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="fw-500" style="text-align: right;">Subtotal</td>
+                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->subtotal)}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Paid</td>
-                                            <td class="fw-500">৳{{session('data')['reservation']->paid_amount}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->paid_amount)}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Due</td>
-                                            <td class="fw-500">৳{{session('data')['reservation']->due}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->due)}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

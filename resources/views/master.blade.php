@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{asset('css/main.css')}}">
 
   <title>@yield('title')</title>
+  @yield('css')
 </head>
 
 <body>
@@ -378,7 +379,7 @@
       $('body').empty().html(printcontent);
       window.print();
       $('body').html(restorepage);
-      location.reload();
+      window.location.replace("/rd");
     }
   </script>
 </body>

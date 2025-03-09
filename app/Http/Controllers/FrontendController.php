@@ -126,7 +126,7 @@ class FrontendController extends Controller
     }
     public function roomReservation(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
 
         DB::beginTransaction();
@@ -160,6 +160,11 @@ class FrontendController extends Controller
                 'invoice' => $invoice,
                 'check_in' => $request->rf_from_date,
                 'check_out' => $request->rf_to_date,
+                'discount_info' => $request->discount_info,
+                'belonging_days' => $request->days,
+                'discount' => $discount_info ? $discount_info->discount : null,
+                'discount_type' => $discount_info ? $discount_info->discount_type : null,
+                'discount_amount' => $discount_info ? $request->discounted_amount : 0,
                 'total' => $request->total,
                 'subtotal' => $request->total,
                 'paid_amount' => $request->paid_amount,

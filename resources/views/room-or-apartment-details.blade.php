@@ -126,6 +126,9 @@
                 <div class="d-flex items-center justify-between  px-30 py-30 rounded-8" id="abMessage" style="display: none;">
 
                 </div>
+                @if(session()->has('message'))
+                {{session('message')}}
+                @endif
                 <div class="sidebar -rooms-single px-40 py-40 md:px-30 md:py-30 border-1 shadow-1">
                     <h3 class="text-30 mb-30">Book Your Room</h3>
 
@@ -154,7 +157,7 @@
                     <button class="button -md bg-accent-2 -dark-1 w-1/1 mt-40" onclick="checkRoomAvailability(this,'{{$room->id}}')" data-url="{{route('checkRoomAvailability')}}">Check Availability</button>
 
                 </div>
-                <form action="{{route('roomReservation')}}" method="post" id="reservationForm" style="display: block;">
+                <form action="{{route('roomReservation')}}" method="post" id="reservationForm" style="display: none;">
                     @csrf
                     <input type="hidden" id="rf_from_date" name="rf_from_date" value="">
                     <input type="hidden" id="rf_to_date" name="rf_to_date" value="">

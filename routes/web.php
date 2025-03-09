@@ -18,3 +18,9 @@ Route::controller(FrontendController::class)->group(function () {
     Route::post('/check-customer-existence', 'checkCustomerExistence')->name('checkCustomerExistence');
     Route::get('/money-receipt', 'moneyReceipt')->name('moneyReceipt');
 });
+
+Route::get('/rd', function () {
+    session()->forget('data');
+
+    return to_route('home');
+});
