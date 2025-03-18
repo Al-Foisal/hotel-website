@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','Contact with us')
+@section('title', config('app.name'))
 @section('css')
 <style>
     .table.-type-2 th {
@@ -13,22 +13,23 @@
     tr>td:last-child {
         text-align: right;
     }
+
     tr>th:last-child {
         text-align: right;
     }
 </style>
 @endsection
 @section('content')
-
+<!-- {{print_r(session('data'))}} -->
 <section class="layout-pt-lg layout-pb-lg">
     <div class="container">
         <div class="row justify-center text-center">
             <div class="col-xl-8 col-lg-10">
 
                 <h2 class="text-64 md:text-40 capitalize">Money Receipt</h2>
-                @if(session()->has('data'))
+                @if(!session()->has('data'))
                 <div class="bg-info-1 px-30 py-30 rounded-8" style="text-align: center;margin-top:3rem;">
-                    <h4>{{session('data')['message']}}</h4>
+                    <h4>Go to <a href="{{route('home')}}">Home</a></h4>
                 </div>
                 @endif
             </div>
@@ -37,36 +38,47 @@
 
 
                 <div class="bg-white" id="printSection">
-                    <div class="px-100 py-100 md:px-20">
+                    <div class="px-100 md:px-20">
                         <div class="row justify-between">
-                            <div class="col-12">
+                            <div class="col-10">
                                 <div class="text-sec text-30 fw-500">{{$setup->hotel_name}}</div>
                                 <div class="text-15 fw-500 mt-20">{{$setup->phone.', '.$setup->email}}</div>
                                 <div class="text-15">{{$setup->address}}</div>
+                            </div>
+                            <div class="col-2">
+                                <img src="{{$image_url.$setup->logo}}" style="margin-top: 40px;">
                             </div>
                             <hr>
                             <div class="col-12">
                                 <div class="row justify-between items-center">
                                     <div class="col-auto">
-                                        <div class="text-30 fw-500">Invoice # <span>{{session('data')['reservation']->invoice_number}}</span></div>
+                                        <div class="text-30 fw-500">Invoice # <span>{{session('data')->invoice_number}}</span></div>
 
-                                        <div class="text-sec text-30 fw-500">Check In# {{\Carbon\Carbon::parse(session('data')['reservation']->check_in)->format('d-m-Y')}}</div>
+                                        <div class="text-sec text-30 fw-500">Check In# {{\Carbon\Carbon::parse(session('data')->check_in)->format('d-m-Y')}}</div>
 
-                                        <div class="text-sec text-30 fw-500">Check Out# {{\Carbon\Carbon::parse(session('data')['reservation']->check_out)->format('d-m-Y')}}</div>
-                                        <p>Invoice created: {{\Carbon\Carbon::parse(session('data')['reservation']->created_at)->format('d-m-Y')}}</p>
+                                        <div class="text-sec text-30 fw-500">Check Out# {{\Carbon\Carbon::parse(session('data')->check_out)->format('d-m-Y')}}</div>
+                                        <p>Invoice created: {{\Carbon\Carbon::parse(session('data')->created_at)->format('d-m-Y')}}</p>
                                     </div>
                                     <div class="col-auto">
                                         <div class="text-sec text-30 fw-500">Customer</div>
-                                        <div class="text-15 fw-500 mt-20">{{session('data')['customer']->name}}</div>
-                                        <div class="text-15 ">{{session('data')['customer']->phone}}</div>
-                                        <div class="text-15 ">{{session('data')['customer']->address}}</div>
+                                        <div class="text-15 fw-500 mt-20">{{session('data')->cc_name}}</div>
+                                        <div class="text-15 ">{{session('data')->cc_phone}}</div>
+                                        <div class="text-15 ">{{session('data')->cc_address}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         @php
-                        $room_type=DB::table('room_categories')->where('id',session('data')['room']->room_category_id)->first()->name;
+                        $room_type=DB::table('room_or_apartmets as ros')
+                        ->where('ros.id',session('data')->rd_room_or_apartment_id)
+                        ->join('room_categories as rcs','ros.room_category_id','=','rcs.id')
+                        ->select([
+                        'ros.room_category_id',
+                        'ros.room_number',
+                        'rcs.name'
+                        ])
+                        ->first();
                         @endphp
                         <div class="row pt-50">
                             <div class="col-12">
@@ -82,11 +94,11 @@
 
                                         <tr>
 
-                                            <td class="text-15">{{session('data')['reserved_room']->room_type}}</td>
+                                            <td class="text-15">{{session('data')->rd_room_type}}</td>
 
-                                            <td class="text-15">{{$room_type}}</td>
+                                            <td class="text-15">{{$room_type->name??'Deluxe Room'}}</td>
 
-                                            <td class="text-15 fw-500">৳{{session('data')['reservation']->total}}</td>
+                                            <td class="text-15 fw-500">৳{{number_format(session('data')->total)}}</td>
 
 
                                         </tr>
@@ -95,29 +107,29 @@
 
 
                                         <tr>
-                                            <td></td>
+                                            <td>PAID BY: <i>{{session('data')->card_issuer}}</i></td>
                                             <td class="fw-500" style="text-align: right;">Total</td>
-                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->subtotal)}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')->subtotal)}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Discount</td>
-                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->discount_amount)}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')->discount_amount)}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Subtotal</td>
-                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->subtotal)}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')->subtotal)}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Paid</td>
-                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->paid_amount)}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')->paid_amount)}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="fw-500" style="text-align: right;">Due</td>
-                                            <td class="fw-500">৳{{number_format(session('data')['reservation']->due)}}</td>
+                                            <td class="fw-500">৳{{number_format(session('data')->due)}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
