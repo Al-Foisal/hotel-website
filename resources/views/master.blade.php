@@ -315,7 +315,7 @@
         <div class="container">
           <div class="row y-gap-30 justify-between md:justify-center items-center">
             <div class="col-sm-auto">
-              <div class="text-15 text-center text-white-60">Copyright © 2024 by {{$setup->hotel_name}}</div>
+              <div class="text-15 text-center text-white-60">Copyright © {{ date('Y') }} by {{$setup->hotel_name}}</div>
             </div>
 
             <div class="col-sm-auto">
