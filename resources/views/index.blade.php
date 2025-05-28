@@ -1,19 +1,80 @@
 @extends('master')
 @section('title','Be charming person enjoying your mindset with our luxury')
+@section('css')
+<style>
+    video {
+        width: 100%;
+        height: 100vh;
+        border: 2px solid #4CAF50;
+        border-radius: 8px;
+        background-color: #000;
+        object-fit: cover;
+    }
+
+    .hero.-type-1 {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        padding: 0;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1200px) {
+
+        .hero.-type-1,
+        video {
+            height: 80vh;
+        }
+    }
+
+    @media (max-width: 992px) {
+
+        .hero.-type-1,
+        video {
+            height: 60vh;
+        }
+    }
+
+    /*@media (max-width: 768px) {
+        .hero.-type-1,
+        video {
+            height: 40vh;
+        }
+        video {
+            border-width: 1px;
+            border-radius: 6px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero.-type-1,
+        video {
+            height: 30vh;
+        }
+        video {
+            border-width: 1px;
+            border-radius: 4px;
+        }
+    }*/
+</style>
+@endsection
 @section('content')
 
 <section data-anim-wrap class="hero -type-1 z-1">
     <div data-anim-child="img-right cover-white" class="hero__bg">
-        <img src="{{asset('img/hero/6/1.png')}}" alt="image">
+        <!-- <img src="{{asset('img/home-banner.jpg')}}" alt="image"> -->
+        <video autoplay loop muted>
+            <source src="{{asset($image_url.$setup->home_theme)}}" type="video/mp4">
+        </video>
     </div>
 
     <div data-anim-wrap class="container">
         <div class="row justify-center text-center">
             <div class="col-xl-8 col-lg-10">
                 <div data-split='lines' data-anim="split-lines delay-2" class="hero__content">
-                    <div class="hero__subtitle text-white">
-                        STAY WITH US FEEL LIKE HOME
-                    </div>
+
 
                     <h2 class="hero__title text-white">
                         {{$setup->slogan}}
@@ -490,6 +551,54 @@
         </div>
     </div>
 </section> -->
+
+<section class="relative layout-pt-lg layout-pb-lg md:pt-0 bg-accent-1" style="margin-bottom: 10rem;;">
+    <div class="sectionBg col-md-6 -left z-1">
+        <div class="mapouter">
+            <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=1278&amp;height=756&amp;hl=en&amp;q=POLICE PLAZA CONCORD SHOPPING MALL, GULSHAN- 1, DHAKA, BANGLADESH&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+            <style>
+                .mapouter {
+                    position: relative;
+                    text-align: right;
+                    width: 100%;
+                    height: 756px;
+                }
+
+                .gmap_canvas {
+                    overflow: hidden;
+                    background: none !important;
+                    width: 100%;
+                    height: 756px;
+                }
+
+                .gmap_iframe {
+                    height: 756px !important;
+                }
+            </style>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-end">
+            <div class="col-md-5">
+                <div class="text-15 text-white">PERFECT</div>
+                <h2 class="text-64 md:text-40 mt-30 text-white">Location</h2>
+                <div class="text-white mt-30">
+                    <div>
+                        {{$setup->address}}
+                    </div>
+                    <br>
+                    <div><a href="#">{{$setup->email}}</a></div>
+                    <div><a href="#">{{$setup->phone}}</a></div>
+                </div>
+
+                <button class="button -md -type-2 bg-accent-2 -light-1 mt-40">
+                    Get Directions
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div class="px-60" style="margin-bottom: 5rem;">
     <div class="line -horizontal bg-border"></div>

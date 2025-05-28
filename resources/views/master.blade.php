@@ -15,7 +15,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{asset('css/vendors.css')}}">
   <link rel="stylesheet" href="{{asset('css/main.css')}}">
-
+  <link rel="icon" type="image/x-icon" href="{{asset($image_url.$setup->favicon)}}">
   <title>@yield('title')</title>
   @yield('css')
 </head>
